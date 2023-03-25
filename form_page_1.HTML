@@ -1,0 +1,66 @@
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+  <script src="https://js.chargebee.com/v2/chargebee.js"></script>
+
+<style>
+
+    .form{
+      padding: 7% 10%;
+    }
+
+
+</style>
+
+</head>
+
+<body>
+
+  <h2 style="text-align:center; margin:2% auto;" >ABC Broadband</h2>
+  <p style="text-align:center; margin:2% auto;"><b>EXPERIENCE FLASH SPEED BROADBAND</b></p>
+
+
+  <form class="form" id="checkout-form">
+    <div class="mb-3">
+      <label for="exampleInputName" class="form-label">Name</label>
+      <input type="string" class="form-control" id="exampleInputName">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputContact" class="form-label">Contact No</label>
+      <input type="string" class="form-control" id="exampleInputContact">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPostal" class="form-label">Postal Code</label>
+      <input type="string" class="form-control" id="exampleInputPostal">
+    </div>
+    <button type="submit" class="btn btn-primary"id="checkout-button">Submit</button>
+  </form>
+  <script>
+    var checkoutForm = document.getElementById('checkout-form');
+    var checkoutButton = document.getElementById('checkout-button');
+
+    checkoutButton.addEventListener('click', function() {
+      Chargebee.init({
+        site: "D:\Work\chargebee\Dhruv_broadband_pricing_page.HTML",
+        publishableKey: "test_xWBDm7Dlcdc79K50fbzZLFnyW6BcueI3lE"
+      });
+
+      Chargebee.setPortalSession(() => {
+        Chargebee.openCheckout({
+          hostedPage: () => Chargebee.hosted_page_checkout.init({
+            successUrl: "D:\Work\chargebee\thank_you_page.HTML",
+            hostedPage: { planId: "dhruv_honeycomics_comics_annual" }
+          })
+        })
+      });
+    });
+</script>
+  
+</body>
